@@ -34,15 +34,15 @@ function Users (props) {
             </td>
           )
         })}
-        {/*{users.map((user) => {*/}
-        {/*  return (*/}
-        {/*    <td key={user._id}>*/}
-        {/*      {user.qualities.map((qual)=>{*/}
-        {/*        return <td key={qual._id}> {qual} </td>*/}
-        {/*      })}*/}
-        {/*    </td>*/}
-        {/*  )*/}
-        {/*})}*/}
+        {users.map((user) => {
+          return (
+            <td key={user._id}>
+              {user.qualities.map((qual)=>{
+                return <td key={qual._id}> {qual.name} </td>
+              })}
+            </td>
+          )
+        })}
         <td></td>
         <td></td>
         <td>
@@ -51,8 +51,6 @@ function Users (props) {
           </button>
         </td>
       </tr>
-
-
       </tbody>
     </table>
 
