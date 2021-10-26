@@ -11,4 +11,6 @@
  *Step2*
  - composing components
  - extracting components
+ - lifting state up
  - add favorites by bookmark
+ - inline props
