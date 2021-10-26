@@ -13,4 +13,4 @@
  - extracting components
  - lifting state up
  - add favorites by bookmark
- - inline props
+ - inline-distructuring props
