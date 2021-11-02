@@ -16,3 +16,10 @@ _Step2_
 - lifting state up
 - add favorites by bookmark
 - inline-distructuring props
+
+_Step3_
+
+- EsLint
+- prettier
+- library lodash
+- pagination
