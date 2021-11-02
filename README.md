@@ -1,16 +1,18 @@
-***Приложение с характеристиками для выбора потенциальных друзей в компанию***
+**_Приложение с характеристиками для выбора потенциальных друзей в компанию_**
 
-*Step1*
- - get fetchAll
- - render phrases & count of users
- - delete users
- - change styles by logic
- - Bootstrap@5.1.0
- - 📝
+_Step1_
 
- *Step2*
- - composing components
- - extracting components
- - lifting state up
- - add favorites by bookmark
- - inline-distructuring props
+- get fetchAll
+- render phrases & count of users
+- delete users
+- change styles by logic
+- Bootstrap@5.1.0
+- 📝
+
+_Step2_
+
+- composing components
+- extracting components
+- lifting state up
+- add favorites by bookmark
+- inline-distructuring props

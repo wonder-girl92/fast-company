@@ -1,58 +1,60 @@
-import React from 'react'
-import Qualitie from './qualitie'
-import Bookmark from './bookmark'
+import React from "react";
+import Quality from "./quality";
+import Bookmark from "./bookmark";
+import PropTypes from "prop-types";
 
-function User ({ users, onDelete, onToggleBookmark }) {
+function User({
+  _id,
+  name,
+  qualities,
+  profession,
+  completedMeetings,
+  rate,
+  bookmark,
+  onDelete,
+  onToggleBookMark
+}) {
   return (
-    <div>
-      <table className="table">
-        <thead>
-        <tr>
-          <th scope="col">Имя</th>
-          <th scope="col">Качества</th>
-          <th scope="col">Профессия</th>
-          <th scope="col">Встретился, раз</th>
-          <th scope="col">Оценка</th>
-          <th scope="col">Избранное</th>
-          <th scope="col">Удалить</th>
-        </tr>
-        </thead>
-        <tbody>
-        {users.map((user) => (
-          <tr key={user._id}>
-            <td> {user.name} </td>
-            <td>
-              {user.qualities.map((item) => (
-                <Qualitie
-                  color={item.color}
-                  name={item.name}
-                  _id={item._id}
-                />
-              ))}
-            </td>
-            <td> {user.profession.name}</td>
-            <td>{user.completedMeetings}</td>
-            <td>{user.rate}</td>
-            <td>
-              <Bookmark
-                status={user.bookmark}
-                onClick={() => onToggleBookmark(user._id)}
-              />
-            </td>
-            <td>
-              <button
-                className={'btn btn-danger btn-sm'}
-                onClick={() => onDelete(user._id)}
-              >
-                Удалить
-              </button>
-            </td>
-          </tr>
+    <tr key={_id}>
+      <td> {name} </td>
+      <td>
+        {qualities.map((item) => (
+          <Quality
+            key={item._id}
+            color={item.color}
+            name={item.name}
+            _id={item._id}
+          />
         ))}
-        </tbody>
-      </table>
-    </div>
-  )
+      </td>
+      <td> {profession.name}</td>
+      <td>{completedMeetings}</td>
+      <td>{rate}</td>
+      <td>
+        <Bookmark status={bookmark} onClick={() => onToggleBookMark(_id)} />
+      </td>
+      <td>
+        <button
+          className={"btn btn-danger btn-sm"}
+          onClick={() => onDelete(_id)}
+        >
+          Удалить
+        </button>
+      </td>
+    </tr>
+  );
 }
 
-export default User
+User.propTypes = {
+  _id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  qualities: PropTypes.array,
+  profession: PropTypes.object.isRequired,
+  completedMeetings: PropTypes.number.isRequired,
+  rate: PropTypes.number.isRequired,
+  bookmark: PropTypes.bool,
+  onDelete: PropTypes.func.isRequired,
+  onToggleBookMark: PropTypes.func.isRequired
+};
+
+export default User;
