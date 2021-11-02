@@ -23,3 +23,4 @@ _Step3_
 - prettier
 - library lodash
 - pagination
+- division of user's quantity into pages
