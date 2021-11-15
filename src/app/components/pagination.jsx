@@ -2,11 +2,16 @@ import React from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 
-const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
-  const pageCount = Math.ceil(itemsCount / pageSize);
-  const pages = _.range(1, pageCount + 1);
-
-  if (pageCount === 1) return null;
+const Pagination = ({
+  itemsCount,
+  pageSize,
+  onPageChange,
+  currentPage
+}) => {
+  const pagesCount = Math.ceil(itemsCount / pageSize);
+  const pages = _.range(1, pagesCount + 1);
+  // создание массива из чисел
+  if (pagesCount === 1) return null;
 
   return (
     <nav>
@@ -16,9 +21,10 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
             className={"page-item " + (page === currentPage ? "active" : "")}
             key={page}
           >
-            <a className="page-link" onClick={() => onPageChange(page)}>
-              {" "}
-              {page}{" "}
+            <a className="page-link"
+              role="button"
+              onClick={() => onPageChange(page)}>
+              {page}
             </a>
           </li>
         ))}

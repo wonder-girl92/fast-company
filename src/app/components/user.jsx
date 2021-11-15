@@ -18,13 +18,8 @@ function User({
     <tr key={_id}>
       <td> {name} </td>
       <td>
-        {qualities.map((item) => (
-          <Quality
-            key={item._id}
-            color={item.color}
-            name={item.name}
-            _id={item._id}
-          />
+        {qualities.map((qual) => (
+          <Quality key={qual._id} {...qual} />
         ))}
       </td>
       <td> {profession.name}</td>
