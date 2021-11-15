@@ -24,3 +24,16 @@ _Step3_
 - library lodash
 - pagination
 - division of user's quantity into pages
+
+_Step4_
+
+- Promise
+- get data by useEffect()
+- object's & array's iteration
+- filter user's professions which are consist of object & array data
+- paginate filtered user's
+- defaultProps (like id, name)
+- flex-grid
+- oneOfType in PropTypes
+- data reset
+
