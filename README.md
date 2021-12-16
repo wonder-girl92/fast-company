@@ -37,3 +37,10 @@ _Step4_
 - oneOfType in PropTypes
 - data reset
 
+_Step5_
+
+- sorting columns
+- creating multipurpose components
+- destructuring props by Spread syntax
+- abstraction layer (development of component's hierarchy)
+
