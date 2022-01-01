@@ -44,3 +44,12 @@ _Step5_
 - destructuring props by Spread syntax
 - abstraction layer (development of component's hierarchy)
 
+_Step6_
+
+- react-router-dom
+- router-hooks (useHistory, useParams)
+- redirect
+- navLink
+- choose by Link and id certain user
+- button returning to all users
+
