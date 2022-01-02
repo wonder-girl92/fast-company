@@ -52,4 +52,5 @@ _Step6_
 - navLink
 - choose by Link and id certain user
 - button returning to all users
+- get users by id using Promise
 
