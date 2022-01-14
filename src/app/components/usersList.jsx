@@ -16,6 +16,8 @@ const UsersList = () => {
   const [sortBy, setSortBy] = useState({ path: "name", order: "asc" });
   // по умолчанию сортировка по имени и возрастанию
   const [users, setUsers] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
+  // для поиска
   useEffect(() => {
     api.users.fetchAll().then((data) => setUsers(data));
   }, []);
@@ -47,13 +49,19 @@ const UsersList = () => {
   }, []);
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedProf]);
-  // переключение на 1-ую страницу после выбора определенной профессии в фильтре
+  }, [selectedProf, searchQuery]);
+  // переключение на 1-ую страницу после выбора определенной профессии в фильтре. Следим также и за поисковыми данными
 
   const pageSize = 8;
 
   const handleProfessionSelect = item => {
+    if (searchQuery !== "") setSearchQuery("");
+    // при выборе профессии очищаем поиск
     setSelectedProf(item);
+  };
+  const handleSearchQuery = ({ target }) => {
+    setSelectedProf(undefined); // сброс текущей фильтрации по профессии
+    setSearchQuery(target.value);
   };
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex);
@@ -65,13 +73,17 @@ const UsersList = () => {
   // на обратное и при выборе другой колонки - направление меняется на стандартное
   // и также меняется параметр сортировки
   if (users) {
-    const filteredUsers = selectedProf
-      ? users.filter(
-        (user) =>
-          JSON.stringify(user.profession) === JSON.stringify(selectedProf))
-    // т.к.первый является объектом, второй массивом, приводим к одному
-    // типу их значения - строке
-      : users;
+    const filteredUsers = searchQuery
+      ? users.filter((user) => user.name
+        .toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
+    // приоритетен поиск перед фильтрацией
+      : selectedProf
+        ? users.filter(
+          (user) =>
+            JSON.stringify(user.profession) === JSON.stringify(selectedProf))
+      // т.к.первый является объектом, второй массивом, приводим к одному
+      // типу их значения - строке
+        : users;
     const count = filteredUsers.length;
     const sortedUsers = _.orderBy(filteredUsers, [sortBy.path], [sortBy.order]);
     const usersCrop = paginate(sortedUsers, currentPage, pageSize);
@@ -80,7 +92,7 @@ const UsersList = () => {
       setSelectedProf();
     };
 
-    return (
+    const div = <>
       <div className="d-flex">
         {professions && (
           <div className="d-flex flex-column flex-shrink-0 p-3">
@@ -91,17 +103,27 @@ const UsersList = () => {
               valueProperty="_id"
               contentProperty="name"
             />
-            <button className="btn btn-secondary mt-2"
-              onClick={clearFilter}>
+            <button
+              className="btn btn-secondary mt-2"
+              onClick={clearFilter}
+            >
               {" "}
-Очистить
+              Очистить
             </button>
           </div>
         )}
         <div className="d-flex flex-column">
-          <SearchStatus length={count} />
+          <SearchStatus length={count}/>
+          <input
+            type="text"
+            name="searchQuery"
+            placeholder="Search..."
+            onChange={handleSearchQuery}
+            value={searchQuery}
+          />
           {count > 0 && (
-            <UserTable users={usersCrop}
+            <UserTable
+              users={usersCrop}
               onSort={handleSort}
               selectedSort={sortBy}
               onDelete={handleDelete}
@@ -118,7 +140,8 @@ const UsersList = () => {
           </div>
         </div>
       </div>
-    );
+    </>;
+    return div;
   }
   return "loading...";
 };
