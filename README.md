@@ -54,3 +54,16 @@ _Step6_
 - button returning to all users
 - get users by id using Promise
 
+_Step7_
+
+- forms
+- controlled components
+- universal reused input form for account data
+- validate account data by switch-case & RegExp
+- create errors if login & password are incorrect (through useState, useEffect)
+- submit form's data
+- button type=submit is grayed out (disabled=true) if data entered is incorrect 
+- hide/show password
+- filtration users by searching (through setState(event.target.value); input value = state)
+
+
