@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import Pagination from "./pagination";
-import { paginate } from "../utils/paginate";
+import Pagination from "../../common/pagination";
+import { paginate } from "../../../utils/paginate";
 import PropTypes from "prop-types";
-import GroupList from "./groupList";
-import api from "../api";
-import SearchStatus from "./searchStatus";
-import UserTable from "./usersTable";
+import GroupList from "../../common/groupList";
+import api from "../../../api";
+import SearchStatus from "../../ui/searchStatus";
+import UserTable from "../../ui/usersTable";
 import _ from "lodash";
 
-const UsersList = () => {
+const UsersListPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [professions, setProfession] = useState();
   const [selectedProf, setSelectedProf] = useState();
@@ -50,7 +50,8 @@ const UsersList = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedProf, searchQuery]);
-  // переключение на 1-ую страницу после выбора определенной профессии в фильтре. Следим также и за поисковыми данными
+  // переключение на 1-ую страницу после выбора определенной профессии в
+  // фильтре. Следим также и за поисковыми данными
 
   const pageSize = 8;
 
@@ -92,7 +93,7 @@ const UsersList = () => {
       setSelectedProf();
     };
 
-    const div = <>
+    return (
       <div className="d-flex">
         {professions && (
           <div className="d-flex flex-column flex-shrink-0 p-3">
@@ -140,14 +141,13 @@ const UsersList = () => {
           </div>
         </div>
       </div>
-    </>;
-    return div;
+    );
   }
   return "loading...";
 };
 
-UsersList.propTypes = {
+UsersListPage.propTypes = {
   users: PropTypes.array
 };
 
-export default UsersList;
+export default UsersListPage;
