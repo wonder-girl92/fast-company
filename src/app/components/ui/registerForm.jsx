@@ -4,30 +4,32 @@ import TextField from "../common/form/textField";
 import api from "../../api";
 import SelectField from "../common/form/selectField";
 import RadioField from "../common/form/radioField";
-// import Select from "react-select";
+import MultiSelectField from "../common/form/multiSelectField";
+import CheckBoxField from "../common/form/checkBoxField";
 
 const RegisterForm = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
     profession: "",
-    sex: "male"
+    sex: "male",
+    qualities: [],
+    license: false
   });
-  const [professions, setProfession] = useState();
+
+  const [qualities, setQualities] = useState({});
+  const [professions, setProfession] = useState([]);
   const [errors, setErrors] = useState({});
   useEffect(() => {
     api.professions.fetchAll().then((data) => setProfession(data));
+    api.qualities.fetchAll().then((data) => setQualities(data));
   }, []);
-  useEffect(() => {
-    console.log(professions);
-  }, [professions]);
-  // console.log(professions);
 
-  const handleChange = ({ target }) => {
-    setData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value
-    }));
+  const handleChange = (target) => {
+      setData((prevState) => ({
+        ...prevState,
+        [target.name]: target.value
+      }));
   };
 
   const validatorConfig = {
@@ -58,6 +60,12 @@ const RegisterForm = () => {
     profession: {
       isRequired: {
         message: "Обязательно выберите Вашу профессию"
+      }
+    },
+    license: {
+      isRequired: {
+        message:
+        "Вы не можете использовать наш сервис без подтверждения лицензионного соглашения"
       }
     }
   };
@@ -98,8 +106,9 @@ const RegisterForm = () => {
         error={errors.password}
       />
       <SelectField
-        label="Выберите свою профессию"
+        label="Выберите профессию"
         defaultOption="Choose..."
+        name="profession"
         options={professions}
         onChange={handleChange}
         value={data.profession}
@@ -109,13 +118,28 @@ const RegisterForm = () => {
         options={[{ name: "Male", value: "male" },
           { name: "Female", value: "female" },
           { name: "Other", value: "other" }
-          // "мы же живем в современном обществе)))))))"
         ]}
         value={data.sex}
         name="sex"
         onChange={handleChange}
+        label="Выберите пол"
       />
-           <button
+      <MultiSelectField
+        options={qualities}
+        onChange={handleChange}
+        defaultValue={data.qualities}
+        name="qualities"
+        label="Выберите качества"
+      />
+      <CheckBoxField
+      value={data.license}
+      onChange={handleChange}
+      name="license"
+      error={errors.license}
+      >
+        Подтвердить <a> лицензионное соглашение </a>
+      </CheckBoxField>
+      <button
         type="submit"
         disabled={!isValid}
         className="btn btn-primary w-100 mx-auto"

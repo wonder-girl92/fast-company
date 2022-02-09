@@ -8,8 +8,11 @@ const UserPage = ({ userId }) => {
   const history = useHistory();
   const [user, setUser] = useState();
   useEffect(() => {
-    api.users.getById(userId).then((data) => setUser(data));
+    api.users.getById(userId).then((data) => setUser(data), []);
   });
+  // ставим пустой массив как зависимость, чтоб юзеры
+  // запрашивались 1 раз при загрузке страницы, а не
+  // каждый раз при изменении страницы
   const handleClick = () => {
     history.push("/users");
   };

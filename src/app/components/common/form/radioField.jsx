@@ -8,6 +8,9 @@ const RadioField = ({
   value,
   label
 }) => {
+  const handleChange = ({ target }) => {
+    onChange({ name: target.name, value: target.value });
+  };
   return (
     <div className="mb-4">
       <label
@@ -15,6 +18,7 @@ const RadioField = ({
       >
         {label}
       </label>
+      <div>
       {options.map((option) => (
         <div
           key={option.name + "_" + option.value}
@@ -26,13 +30,14 @@ const RadioField = ({
             id={option.name + "_" + option.value}
             checked={option.value === value}
             value={option.value}
-            onChange={onChange}
+            onChange={handleChange}
           />
           <label className="form-check-label" htmlFor={option.name + "_" + option.value}>
             {option.name}
           </label>
         </div>
       ))}
+      </div>
     </div>
   );
 };
