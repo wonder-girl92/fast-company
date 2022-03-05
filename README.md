@@ -77,5 +77,6 @@ _Step8_
 - create userCard
 - add comments by other users
 - change user's data
+- when (time or date) comments are leaving
 
 
