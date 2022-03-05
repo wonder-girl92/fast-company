@@ -78,5 +78,6 @@ _Step8_
 - add comments by other users
 - change user's data
 - when (time or date) comments are leaving
+- set random avatars
 
 
