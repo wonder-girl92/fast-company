@@ -66,4 +66,16 @@ _Step7_
 - hide/show password
 - filtration users by searching (through setState(event.target.value); input value = state)
 
+_Step8_
+
+- register, log in forms
+- validation of forms
+- set data to localStorage
+- library Yup
+- radioForm, select, multiselect, checkbox
+- update api
+- create userCard
+- add comments by other users
+- change user's data
+
 
