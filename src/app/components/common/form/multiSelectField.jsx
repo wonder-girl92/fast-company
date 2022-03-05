@@ -9,6 +9,10 @@ const MultiSelectField = ({
   label,
   defaultValue
 }) => {
+  const defaultValueToArray = defaultValue.map((value) => ({
+    label: value.name,
+    value: value._id
+  }));
   const optionsArray =
     !Array.isArray(options) &&
   typeof options === "object"
@@ -31,7 +35,7 @@ const MultiSelectField = ({
       isMulti
       closeMenuOnSelect={false}
       // чтоб вкладка автоматически не закрывалась после выбора
-      defaultValue={defaultValue}
+      defaultValue={defaultValueToArray}
       options={optionsArray}
       className="basic-multi-select"
       classNamePrefix="select"
