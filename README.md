@@ -80,7 +80,7 @@ _Step8_
 - when (time or date) comments are leaving
 - set random avatars
 
-_Step8_
+_Step9_
 
 - http services
 - expected and unexpected errors
