@@ -80,4 +80,15 @@ _Step8_
 - when (time or date) comments are leaving
 - set random avatars
 
+_Step8_
+
+- http services
+- expected and unexpected errors
+- url modification by axios interceptors
+- display errors by toastify
+- custom hooks
+- Firebase's requests
+- creating data at Firebase
+- progress percent of initializing
+
 
