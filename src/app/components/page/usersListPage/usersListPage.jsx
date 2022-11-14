@@ -8,31 +8,28 @@ import api from "../../../api";
 import SearchStatus from "../../ui/searchStatus";
 import UserTable from "../../ui/usersTable";
 import _ from "lodash";
+import { useUser } from "../../../hooks/useUsers";
 
 const UsersListPage = () => {
+  const { users } = useUser();
   const [currentPage, setCurrentPage] = useState(1);
   const [professions, setProfession] = useState();
   const [selectedProf, setSelectedProf] = useState();
   const [sortBy, setSortBy] = useState({ path: "name", order: "asc" });
   // по умолчанию сортировка по имени и возрастанию
-  const [users, setUsers] = useState();
   const [searchQuery, setSearchQuery] = useState("");
   // для поиска
-  useEffect(() => {
-    api.users.fetchAll().then((data) => setUsers(data));
-  }, []);
+  const pageSize = 8;
 
   const handleDelete = (userId) => {
-    setUsers(
-      users.filter((user) => {
-        return user._id !== userId;
-      })
-    );
+    // setUsers(
+    //   users.filter((user) => return user._id !== userId;
+    //   );
+    console.log("delete user");
   };
 
   const handleToggleBookMark = (id) => {
-    setUsers(
-      users.map((user) => {
+    const newArray = users.map((user) => {
         if (user._id === id) {
           return {
             ...user,
@@ -40,8 +37,9 @@ const UsersListPage = () => {
           };
         }
         return user;
-      })
-    );
+      });
+    // setUsers(newArray)
+    console.log(newArray);
   };
 
   useEffect(() => {
@@ -53,9 +51,7 @@ const UsersListPage = () => {
   // переключение на 1-ую страницу после выбора определенной профессии в
   // фильтре. Следим также и за поисковыми данными
 
-  const pageSize = 8;
-
-  const handleProfessionSelect = item => {
+  const handleProfessionSelect = (item) => {
     if (searchQuery !== "") setSearchQuery("");
     // при выборе профессии очищаем поиск
     setSelectedProf(item);
@@ -73,10 +69,10 @@ const UsersListPage = () => {
   // при повторном нажатии на колонку (имя, профессия..) направление меняется
   // на обратное и при выборе другой колонки - направление меняется на стандартное
   // и также меняется параметр сортировки
-  if (users) {
+
     const filteredUsers = searchQuery
-      ? users.filter((user) => user.name
-        .toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
+      ? users.filter((user) =>
+        user.name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1)
     // приоритетен поиск перед фильтрацией
       : selectedProf
         ? users.filter(
@@ -124,7 +120,7 @@ const UsersListPage = () => {
             value={searchQuery}
           />
           {count > 0 && (
-            <UserTable
+          <UserTable
               users={usersCrop}
               onSort={handleSort}
               selectedSort={sortBy}
@@ -143,9 +139,7 @@ const UsersListPage = () => {
         </div>
       </div>
     );
-  }
-  return "loading...";
-};
+  };
 
 UsersListPage.propTypes = {
   users: PropTypes.array
