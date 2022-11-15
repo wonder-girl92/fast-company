@@ -87,6 +87,7 @@ _Step9_
 - url modification by axios interceptors
 - display errors by toastify
 - custom hooks
+- useContext()
 - Firebase's requests
 - creating data at Firebase
 - progress percent of initializing
