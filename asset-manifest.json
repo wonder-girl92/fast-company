@@ -1,20 +1,13 @@
 {
   "files": {
-    "main.js": "/fast-company/static/js/main.ca0c3fc7.chunk.js",
-    "main.js.map": "/fast-company/static/js/main.ca0c3fc7.chunk.js.map",
-    "runtime-main.js": "/fast-company/static/js/runtime-main.66e647ee.js",
-    "runtime-main.js.map": "/fast-company/static/js/runtime-main.66e647ee.js.map",
-    "static/css/2.63ec5a3e.chunk.css": "/fast-company/static/css/2.63ec5a3e.chunk.css",
-    "static/js/2.da365b73.chunk.js": "/fast-company/static/js/2.da365b73.chunk.js",
-    "static/js/2.da365b73.chunk.js.map": "/fast-company/static/js/2.da365b73.chunk.js.map",
+    "main.css": "/fast-company/static/css/main.a8cd2df8.css",
+    "main.js": "/fast-company/static/js/main.cecf9fa8.js",
     "index.html": "/fast-company/index.html",
-    "static/css/2.63ec5a3e.chunk.css.map": "/fast-company/static/css/2.63ec5a3e.chunk.css.map",
-    "static/js/2.da365b73.chunk.js.LICENSE.txt": "/fast-company/static/js/2.da365b73.chunk.js.LICENSE.txt"
+    "main.a8cd2df8.css.map": "/fast-company/static/css/main.a8cd2df8.css.map",
+    "main.cecf9fa8.js.map": "/fast-company/static/js/main.cecf9fa8.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.66e647ee.js",
-    "static/css/2.63ec5a3e.chunk.css",
-    "static/js/2.da365b73.chunk.js",
-    "static/js/main.ca0c3fc7.chunk.js"
+    "static/css/main.a8cd2df8.css",
+    "static/js/main.cecf9fa8.js"
   ]
 }
